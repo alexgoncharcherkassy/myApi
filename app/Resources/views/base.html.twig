@@ -2,12 +2,27 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}My Api{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block body %}
+            {% block content %}
+                <div class="container" id="main">
+                    <div class="row">
+                        {% block layoutAdmin %}
+                            {% block panel %}
+                            {% endblock %}
+                        {% endblock %}
+                    </div><!--/row-->
+                </div><!--/main-->
+            {% endblock %}
+        {% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('js/app.js') }}"></script>
+        {% endblock %}
     </body>
 </html>

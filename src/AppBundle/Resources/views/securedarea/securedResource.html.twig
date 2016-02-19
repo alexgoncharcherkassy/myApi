@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="col-md-12">
+    <strong> Secured Zone</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="{{ path('homepage') }}">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="{{ path('logout') }}">Logout</a>
+    <hr>
+
+    {% if user.email is defined %}
+        E-mail: {{ user.email }} <br>
+    {% endif %}
+    {% if user.lastname is defined %}
+        Name: {{ user.lastname }} <br>
+    {% endif %}
+</div>
+{% endblock %}

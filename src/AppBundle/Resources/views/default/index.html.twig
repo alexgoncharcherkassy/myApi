@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block panel %}
+
+<div class="col-md-12 ">
+    <a href="{{ path('logout') }}"> Logout </a> <br><br><br>
+    <a href="{{ path('login_route') }}"> Login via form </a> <br>
+    <a href="{{ path('facebook_login') }}">Login via Facebook</a> <br>
+    <a href="{{ path('google_login') }}">Login via Google</a> <br>
+
+    <hr/>
+
+    <a href="{{ path('secured_zone') }}">Secured zone</a> <br>
+
+    <hr/>
+    Homepage.
+</div>
+{% endblock %}
