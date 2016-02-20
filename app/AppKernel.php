@@ -23,9 +23,13 @@ class AppKernel extends Kernel
             new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
             new Exercise\HTMLPurifierBundle\ExerciseHTMLPurifierBundle(),
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
+            new Mcfedr\JsonFormBundle\McfedrJsonFormBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
+            $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
+            $bundles[] = new Hautelook\AliceBundle\HautelookAliceBundle();
+
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();

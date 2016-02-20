@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d8292bc5d2207cf1a5b7d1924ac2c7a3",
-    "content-hash": "1a0229c4c539b7a758436062ead3d33e",
+    "hash": "561331fa0e87ec6be06de10ac958d5c3",
+    "content-hash": "e56aa22d3fd9f94b1286b05fe0ba8002",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1799,6 +1799,53 @@
                 "imagine"
             ],
             "time": "2015-12-29 09:47:49"
+        },
+        {
+            "name": "mcfedr/json-form",
+            "version": "3.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mcfedr/json-form.git",
+                "reference": "ea07559d9e99eddfb7344c081fa763e3915d29af"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mcfedr/json-form/zipball/ea07559d9e99eddfb7344c081fa763e3915d29af",
+                "reference": "ea07559d9e99eddfb7344c081fa763e3915d29af",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5",
+                "symfony/symfony": "~2.8|~3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.3",
+                "sensio/framework-extra-bundle": "~3.0",
+                "symfony/monolog-bundle": "~2.3|^3.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Mcfedr\\JsonFormBundle\\": "src/Mcfedr/JsonFormBundle"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fred Cox",
+                    "email": "mcfedr@gmail.com"
+                }
+            ],
+            "description": "A couple of helper files for handling json with symfony forms",
+            "keywords": [
+                "Forms",
+                "json",
+                "symfony"
+            ],
+            "time": "2016-02-02 12:29:30"
         },
         {
             "name": "monolog/monolog",

@@ -5,11 +5,16 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
 
-
     <services>
         <service id="oauth_test_provider" class="AppBundle\OAuthProvider\LoginUserProvider">
             <argument type="service" id="doctrine.orm.entity_manager" />
         </service>
+
+        <service id="api_key_user_provider" class="AppBundle\Security\ApiKeyUserProvider" >
+            <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
+
+        <service id="my.security.token_authenticator" class="AppBundle\Security\ApiKeyAuthenticator" />
     </services>
 
 </container>

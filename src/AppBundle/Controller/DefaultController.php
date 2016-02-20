@@ -5,36 +5,36 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class DefaultController extends Controller
 {
     /**
      * @Route("/", name="homepage")
+     * @Template("@App/default/index.html.twig")
      */
     public function indexAction()
     {
-        return $this->render(
-            '@App/default/index.html.twig',
-            array()
-        );
+       return [];
     }
     /**
      * @Route("/secure", name="secured_zone")
+     * @Template("@App/securedarea/securedResource.html.twig")
      */
     public function securedResourceAction()
     {
         $user = $this->getUser();
+        $posts = $this->getDoctrine()->getRepository('AppBundle:Post')
+            ->findAll();
 
-        return $this->render(
-            '@App/securedarea/securedResource.html.twig',
-            array(
-                'user'         => $user,
-            )
-        );
+        return ['user' => $user,
+                'posts' => $posts
+        ];
 
     }
     /**
      * @Route("/login", name="login_route")
+     * @Template("@App/security/login.html.twig")
      */
     public function loginAction(Request $request)
     {
@@ -44,13 +44,10 @@ class DefaultController extends Controller
 
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render(
-            '@App/security/login.html.twig',
-            array(
+        return [
                 'last_username' => $lastUsername,
                 'error'         => $error,
-            )
-        );
+        ];
     }
     /**
      * Register

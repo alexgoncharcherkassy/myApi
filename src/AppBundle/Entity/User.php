@@ -8,6 +8,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -15,7 +16,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository", )
  */
-class User implements UserInterface
+class User implements UserInterface, \JsonSerializable
 {
     /**
      * @var integer
@@ -91,6 +92,17 @@ class User implements UserInterface
      * @ORM\Column(name="password", type="string", nullable=true)
      */
     protected $password;
+
+    /**
+     * @ORM\Column(name="api_key", type="string", nullable=true)
+     */
+    protected $apiKey;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Post", mappedBy="author")
+     */
+    private $posts;
+
     /**
      * @var string $plainPassword
      */
@@ -100,6 +112,62 @@ class User implements UserInterface
     {
         $this->salt = md5(uniqid());
         $this->setRoles('ROLE_USER');
+        $this->posts = new ArrayCollection();
+        $this->apiKey = md5(uniqid());
+    }
+
+    function jsonSerialize()
+    {
+        return [
+            'id' => $this->getId(),
+            'email' => $this->getEmail(),
+            'firstName' => $this->getFirstName(),
+            'lastName' => $this->getLastName()
+        ];
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getApiKey()
+    {
+        return $this->apiKey;
+    }
+
+    /**
+     * @param mixed $apiKey
+     */
+    public function setApiKey($apiKey)
+    {
+        $this->apiKey = $apiKey;
+    }
+
+    /**
+     * @param Post $post
+     * @return $this
+     */
+    public function addPost(Post $post)
+    {
+        $this->posts->add($post);
+
+        return $this;
+    }
+
+    /**
+     * @param Post $post
+     */
+    public function removePost(Post $post)
+    {
+        $this->posts->removeElement($post);
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getPosts()
+    {
+        return $this->posts;
     }
 
     /**

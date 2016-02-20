@@ -18,8 +18,20 @@ security:
             id: oauth_test_provider
 
     firewalls:
+        api_login:
+            pattern: ^/api/(login)
+            security: false
+            anonymous: true
+
+        api_area:
+            pattern: ^/api
+            guard:
+                authenticator: my.security.token_authenticator
+            stateless: true
+            anonymous: false
+
         main:
-            pattern:    ^/
+            pattern: ^/
 
             form_login:
                 provider: user_db_provider
@@ -46,5 +58,8 @@ security:
         - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/connect, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/secure, role: ROLE_USER }
+        - { path: ^/api, role: ROLE_USER }
+
+
 
 
