@@ -12,14 +12,19 @@ use AppBundle\Form\ApiUserType;
 
 class ApiController extends JsonController
 {
+    const LIMIT_PAGE = 10;
+    const START_PAGE = 1;
+
     /**
      * @Route("/api/posts", name="api_posts")
-     * @Method("GET")
      */
-    public function showAllPostAction()
+    public function showAllPostAction(Request $request)
     {
+        $page = $request->query->get('start') ? $request->query->get('start') : self::START_PAGE;
+        $limit = $request->query->get('limit') ? $request->query->get('limit') : self::LIMIT_PAGE;
+        $start = $page * $limit - $limit;
         $posts = $this->getDoctrine()->getRepository('AppBundle:Post')
-            ->findAll();
+            ->findAllPost($start, $limit);
         if (!$posts) {
             return new JsonResponse(array('message' => 'Not found posts'), 404);
         }
@@ -29,7 +34,6 @@ class ApiController extends JsonController
 
     /**
      * @Route("/api/posts/{slug}", name="api_posts_id")
-     * @Method("GET")
      */
     public function showPostAction($slug)
     {
@@ -51,13 +55,16 @@ class ApiController extends JsonController
     }
 
     /**
-     * @Route("/api/users", name="api_users")
-     * @Method("GET")
+     * @Route("/api/users/{id}/posts", name="api_users")
      */
-    public function userAction()
+    public function userAction($id)
     {
-        $users = $this->getDoctrine()->getRepository('AppBundle:User')
-            ->findAll();
+        $user = $this->getUser();
+        if ($id === 'my') {
+            $id = $user;
+        }
+        $users = $this->getDoctrine()->getRepository('AppBundle:Post')
+            ->findBy(array('author' => $id));
 
         return new JsonResponse(array('users' => $users));
     }

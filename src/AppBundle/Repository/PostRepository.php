@@ -29,4 +29,18 @@ class PostRepository extends EntityRepository
             ->getResult();
     }
 
+    /**
+     *
+     */
+    public function findAllPost($start, $limit)
+    {
+        return $this->createQueryBuilder('p')
+            ->select('p')
+            ->orderBy('p.createdAt', 'DESC')
+            ->setFirstResult($start)
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
+
 }
