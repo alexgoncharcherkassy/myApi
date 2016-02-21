@@ -49,18 +49,19 @@ class LoginUserProvider implements UserProviderInterface, OAuthAwareUserProvider
             $em->persist($user);
         }
         if ($type === 'facebook') {
-            $user->setFbToken($response->getAccessToken())
-                ->setFbId($response->getUsername())
+
+            $user->setFacebookToken($response->getAccessToken())
+                ->setFacebookId($response->getUsername())
                 ->setType($type)
-                ->setGId(null)
-                ->setGToken(null);
+                ->setGoogleId(null)
+                ->setGoogleToken(null);
         }
         if ($type === 'google') {
-            $user->setGToken($response->getAccessToken())
-                ->setGId($response->getUsername())
+            $user->setGoogleToken($response->getAccessToken())
+                ->setGoogleId($response->getUsername())
                 ->setType($type)
-                ->setFbId(null)
-                ->setFbToken(null);
+                ->setFacebookId(null)
+                ->setFacebookToken(null);
         }
         $em->flush();
 

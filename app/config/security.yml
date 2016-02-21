@@ -1,7 +1,5 @@
 security:
     encoders:
-        Symfony\Component\Security\Core\User\User:
-            algorithm: bcrypt
         AppBundle\Entity\User:
             algorithm: bcrypt
 
@@ -20,13 +18,15 @@ security:
     firewalls:
         api_login:
             pattern: ^/api/(login)
+            methods: [POST]
             security: false
             anonymous: true
 
         api_area:
             pattern: ^/api
+            methods: [GET, POST, PUT, DELETE]
             guard:
-                authenticator: my.security.token_authenticator
+                authenticator: app.token_authenticator
             stateless: true
             anonymous: false
 

@@ -83,12 +83,12 @@ hwi_oauth:
     resource_owners:
         google:
             type:                google
-            client_id:           %g_id%
-            client_secret:       %g_secret%
+            client_id:           %googleId%
+            client_secret:       %googleToken%
             scope:               "email profile"
         facebook:
             type:                facebook
-            client_id:           %fb_id%
-            client_secret:       %fb_secret%
+            client_id:           %facebookId%
+            client_secret:       %facebookToken%
             scope:               "email, public_profile"
             infos_url:           "https://graph.facebook.com/me?fields=id,name,location,birthday,email,hometown,picture,relationship_status,gender"

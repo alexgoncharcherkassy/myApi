@@ -49,25 +49,25 @@ class User implements UserInterface, \JsonSerializable
      *
      * @ORM\Column(name="fb_token", type="string", nullable=true)
      */
-    protected $fb_token;
+    protected $facebookToken;
     /**
      * @var string
      *
      * @ORM\Column(name="fb_id", type="string", nullable=true)
      */
-    protected $fb_id;
+    protected $facebookId;
     /**
      * @var string
      *
      * @ORM\Column(name="g_token", type="string", nullable=true)
      */
-    protected $g_token;
+    protected $googleToken;
     /**
      * @var string
      *
      * @ORM\Column(name="g_id", type="string", nullable=true)
      */
-    protected $g_id;
+    protected $googleId;
     /**
      * @var string
      *
@@ -301,6 +301,18 @@ class User implements UserInterface, \JsonSerializable
     }
 
     /**
+     * Set password
+     *
+     * @param string $password
+     * @return User
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+        return $this;
+    }
+
+    /**
      * Removes sensitive data from the user.
      *
      * This is important if, at any given point, sensitive information like
@@ -322,104 +334,77 @@ class User implements UserInterface, \JsonSerializable
     }
 
     /**
-     * Set fb_token
-     *
-     * @param string $fbToken
-     * @return User
-     */
-    public function setFbToken($fbToken)
-    {
-        $this->fb_token = $fbToken;
-        return $this;
-    }
-
-    /**
-     * Get fb_token
-     *
      * @return string
      */
-    public function getFbToken()
+    public function getFacebookToken()
     {
-        return $this->fb_token;
+        return $this->facebookToken;
     }
 
     /**
-     * Set g_token
-     *
-     * @param string $gToken
-     * @return User
+     * @param string $facebookToken
      */
-    public function setGToken($gToken)
+    public function setFacebookToken($facebookToken)
     {
-        $this->g_token = $gToken;
+        $this->facebookToken = $facebookToken;
+
         return $this;
     }
 
     /**
-     * Get g_token
-     *
      * @return string
      */
-    public function getGToken()
+    public function getFacebookId()
     {
-        return $this->g_token;
+        return $this->facebookId;
     }
 
     /**
-     * Set password
-     *
-     * @param string $password
-     * @return User
+     * @param string $facebookId
      */
-    public function setPassword($password)
+    public function setFacebookId($facebookId)
     {
-        $this->password = $password;
+        $this->facebookId = $facebookId;
+
         return $this;
     }
 
     /**
-     * Set fb_id
-     *
-     * @param string $fbId
-     * @return User
-     */
-    public function setFbId($fbId)
-    {
-        $this->fb_id = $fbId;
-        return $this;
-    }
-
-    /**
-     * Get fb_id
-     *
      * @return string
      */
-    public function getFbId()
+    public function getGoogleToken()
     {
-        return $this->fb_id;
+        return $this->googleToken;
     }
 
     /**
-     * Set g_id
-     *
-     * @param string $gId
-     * @return User
+     * @param string $googleToken
      */
-    public function setGId($gId)
+    public function setGoogleToken($googleToken)
     {
-        $this->g_id = $gId;
+        $this->googleToken = $googleToken;
+
         return $this;
     }
 
     /**
-     * Get g_id
-     *
      * @return string
      */
-    public function getGId()
+    public function getGoogleId()
     {
-        return $this->g_id;
+        return $this->googleId;
     }
+
+    /**
+     * @param string $googleId
+     */
+    public function setGoogleId($googleId)
+    {
+        $this->googleId = $googleId;
+
+        return $this;
+    }
+
 
     /**
      * Set type
@@ -430,6 +415,7 @@ class User implements UserInterface, \JsonSerializable
     public function setType($type)
     {
         $this->type = $type;
+
         return $this;
     }
 
