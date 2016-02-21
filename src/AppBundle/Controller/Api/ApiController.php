@@ -17,6 +17,7 @@ class ApiController extends JsonController
 
     /**
      * @Route("/api/posts", name="api_posts")
+     * @Method("GET")
      */
     public function showAllPostAction(Request $request)
     {
@@ -34,6 +35,7 @@ class ApiController extends JsonController
 
     /**
      * @Route("/api/posts/{slug}", name="api_posts_id")
+     * @Method("GET")
      */
     public function showPostAction($slug)
     {
@@ -45,6 +47,7 @@ class ApiController extends JsonController
 
     /**
      * @Route("/api/posts/search/{data}", name="api_posts_search")
+     * @Method("GET")
      */
     public function searchPostAction($data)
     {
@@ -56,6 +59,7 @@ class ApiController extends JsonController
 
     /**
      * @Route("/api/users/{id}/posts", name="api_users")
+     * @Method("GET")
      */
     public function userAction($id)
     {
