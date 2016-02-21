@@ -40,7 +40,7 @@ GET
 http://myapi.com/app_dev.php/api/posts?start=2$limit=5
 </p>
 <h2>
-Format data
+Format output data
 </h2>
 <pre>
 {
