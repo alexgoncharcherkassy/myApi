@@ -1,6 +1,6 @@
-<strong>
+<h1>
     GET api/posts
-</strong>
+</h1>
 
 <h2>
 Resource URL
@@ -42,24 +42,24 @@ http://myapi.com/app_dev.php/api/posts?start=2$limit=5
 <h2>
 Format data
 </h2>
-<code>
+<pre>
 {
-"posts": [
-{
-"titlePost": " ",
-"textPost": " ",
-"slug": " ",
-"createdAt": {
-"date": " ",
-"timezone_type": " ",
-"timezone": " "
-},
-"author": {
-"id": " ",
-"email": " ",
-"firstName": " ",
-"lastName": " "
+    "posts": [
+        {
+            "titlePost": " ",
+            "textPost": " ",
+            "slug": " ",
+            "createdAt": {
+                "date": " ",
+                "timezone_type": " ",
+                "timezone": " "
+            },
+            "author": {
+                "id": " ",
+                "email": " ",
+                "firstName": " ",
+                "lastName": " "
+            }
+    ]
 }
-]
-}
-</code>
+</pre>
