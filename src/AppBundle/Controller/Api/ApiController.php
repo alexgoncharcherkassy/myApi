@@ -21,8 +21,8 @@ class ApiController extends JsonController
      */
     public function showAllPostAction(Request $request)
     {
-        $page = $request->query->get('start') ? $request->query->get('start') : self::START_PAGE;
-        $limit = $request->query->get('limit') ? $request->query->get('limit') : self::LIMIT_PAGE;
+        $page = $request->get('start', self::START_PAGE);
+        $limit = $request->get('limit', self::LIMIT_PAGE);
         $start = $page * $limit - $limit;
         $posts = $this->getDoctrine()->getRepository('AppBundle:Post')
             ->findAllPost($start, $limit);
@@ -61,16 +61,25 @@ class ApiController extends JsonController
      * @Route("/api/users/{id}/posts", name="api_users")
      * @Method("GET")
      */
-    public function userAction($id)
+    public function userPostAction($id)
+    {
+        $posts = $this->getDoctrine()->getRepository('AppBundle:Post')
+            ->findBy(['author' => $id]);
+
+        return new JsonResponse(['posts' => $posts]);
+    }
+
+    /**
+     * @Route("/api/users/my/posts", name="api_users")
+     * @Method("GET")
+     */
+    public function userMyPostAction()
     {
         $user = $this->getUser();
-        if ($id === 'my') {
-            $id = $user;
-        }
-        $users = $this->getDoctrine()->getRepository('AppBundle:Post')
-            ->findBy(array('author' => $id));
+        $posts = $this->getDoctrine()->getRepository('AppBundle:Post')
+            ->findBy(['author' => $user]);
 
-        return new JsonResponse(array('users' => $users));
+        return new JsonResponse(['posts' => $posts]);
     }
 
     /**
